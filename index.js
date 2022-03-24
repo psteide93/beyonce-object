@@ -133,14 +133,14 @@ function hitFiercenessAverage() {
   for (let number of fierceness) {
     sum += number
   }
-  let avg = sum/fierceness.length
+  let avg = sum / fierceness.length
   return avg
 }
 
 // 15. Return the sum of Beyonce's rating value for all of her movies
 function ratingSum() {
   const ratings = []
-  for (let i = 0; i < beyonceHash.movies.length; i++){
+  for (let i = 0; i < beyonceHash.movies.length; i++) {
     ratings.push(beyonceHash.movies[i].rating);
   }
   let sum = 0
@@ -153,24 +153,45 @@ function ratingSum() {
 // 16. Return the average rating value for all of her movies
 function ratingAverage() {
   const ratings = []
-  for (let i = 0; i < beyonceHash.movies.length; i++){
+  for (let i = 0; i < beyonceHash.movies.length; i++) {
     ratings.push(beyonceHash.movies[i].rating);
   }
   let sum = 0
   for (let rating of ratings) {
     sum += rating
   }
-  let avg = sum/ratings.length
+  let avg = sum / ratings.length
   return avg
 
 }
 
 // 17. Return the sum of the total number of dancers in all of the hit song videos
 function hitDancerSum() {
+  const numberOfDancers = []
+  for (let i = 0; i < beyonceHash.hits.length; i++) {
+    numberOfDancers.push(beyonceHash.hits[i].dancers);
+  }
+  let sum = 0
+  for (let dancers of numberOfDancers) {
+    sum += dancers
+  }
+  return sum
 }
 
 // 18. Return an array of Beyonce's hairstyles without repeats
 function uniqueHairstyles() {
+  const hair = []
+  for (let i = 0; i < beyonceHash.hits.length; i++) {
+    hair.push(beyonceHash.hits[i].hair)
+  } 
+    let hairCombined = []
+    for (let i = 0; i < hair.length; i++) {
+      hairCombined = hairCombined.concat(hair[i])
+    }
+    uniqueHair = hairCombined.filter(function(hair,position){
+      return hairCombined.indexOf(hair) == position;
+    })
+     return uniqueHair
 }
 
 // 19. Return an object where the properties are song names and the value is an object which contains that song's fierceness and the average fierceness for all songs
@@ -185,4 +206,4 @@ function movieRatingsByName() {
 function hairStyleFrequency() {
 }
 
-ratingSum()
+uniqueHairstyles()
