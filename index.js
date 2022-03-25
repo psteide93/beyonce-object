@@ -208,7 +208,7 @@ function songFiercenessByName() {
 
 // 20. Return an object where the properties are movie names and the value is an object which contains that movie's rating and the average rating for all movies
 function movieRatingsByName() {
-  const ratingsByName = beyonceHash.movies.map(movies => {
+  return beyonceHash.movies.map(movies => {
     const ratings = []
     for (let i = 0; i < beyonceHash.movies.length; i++) {
       ratings.push(beyonceHash.movies[i].rating);
@@ -225,10 +225,18 @@ function movieRatingsByName() {
       averageRating: avg
     }
   })
-  console.log(ratingsByName)
+
 }
 
 // 21. Return an object with Beyonce's hairstyles as the keys and a tally of each hairstyle, eg. `{ "blonde": 3, ... }`
 function hairStyleFrequency() {
-}
+  const hairdo = beyonceHash.hits.map(hits => hits.hair)
+  const hairdoCombined = hairdo.flat()
+  const tally = {}
+  for (const num of hairdoCombined) {
+    tally[num] = tally[num] ? tally[num] + 1 : 1
+  }
 
+return tally 
+
+}
