@@ -43,20 +43,12 @@ function printAllMovies() {
 
 // 3. Return an array of all Beyonce's hit song titles
 function hitSongTitles() {
-  const songTitles = []
-  for (let i = 0; i < beyonceHash.hits.length; i++) {
-    songTitles.push(beyonceHash.hits[i].title);
-  }
-  return songTitles
+  return beyonceHash.hits.map(hits => hits.title)
 }
 
 // 4. Return an array of all Beyonce's fierceness ratings
 function allFiercenessRatings() {
-  const fierceness = []
-  for (let i = 0; i < beyonceHash.hits.length; i++) {
-    fierceness.push(beyonceHash.hits[i].fierceness);
-  }
-  return fierceness
+  return beyonceHash.hits.map(hits => hits.fierceness)
 }
 
 // 5. Return all the songs where Beyonce is wearing a bodysuit or a bodysuit is part of the video theme
@@ -66,22 +58,13 @@ function songsWithBodySuits() {
 
 // 6. Return an array with all of the songs where Beyonce's fierceness is greater than or equal to a given number
 function getSongsByFiercenessGTE(number) {
-  const array = []
-  const beyonceFierce = beyonceHash.hits.filter(hit => hit.fierceness >= number)
-  for (let i = 0; i < beyonceFierce.length; i++) {
-    array.push(beyonceFierce[i].title);
-  }
-  return array
+  return beyonceHash.hits.filter(hit => hit.fierceness >= number)
 }
+
 
 // 7. Return an array with all of the movies Beyonce made after or during a given year
 function getMoviesByDateGTE(number) {
-  const array = []
-  const beyonceYear = beyonceHash.movies.filter(movies => movies.year >= number)
-  for (let i = 0; i < beyonceYear.length; i++) {
-    array.push(beyonceYear[i].title);
-  }
-  return array
+  return beyonceHash.movies.filter(movies => movies.year >= number)
 }
 
 // 8. Return all hit songs where Beyonce was in a group
@@ -112,56 +95,24 @@ function fiercestHits() {
 
 // 13. Return the sum of Beyonce's fierceness value for all of her hit songs
 function hitFiercenessSum() {
-  const fierceness = []
-  for (let i = 0; i < beyonceHash.hits.length; i++) {
-    fierceness.push(beyonceHash.hits[i].fierceness);
-  }
-  let sum = 0
-  for (let number of fierceness) {
-    sum += number
-  }
-  return sum
+  return allFiercenessRatings().reduce((a, b) => a + b, 0)
 }
 
 // 14. Return the average fierceness value for all Beyonce's hit songs
 function hitFiercenessAverage() {
-  const fierceness = []
-  for (let i = 0; i < beyonceHash.hits.length; i++) {
-    fierceness.push(beyonceHash.hits[i].fierceness);
-  }
-  let sum = 0
-  for (let number of fierceness) {
-    sum += number
-  }
-  let avg = sum / fierceness.length
-  return avg
+  return hitFiercenessSum() / allFiercenessRatings().length
 }
 
 // 15. Return the sum of Beyonce's rating value for all of her movies
 function ratingSum() {
-  const ratings = []
-  for (let i = 0; i < beyonceHash.movies.length; i++) {
-    ratings.push(beyonceHash.movies[i].rating);
-  }
-  let sum = 0
-  for (let rating of ratings) {
-    sum += rating
-  }
-  return sum
+  return beyonceHash.movies
+    .map(movies => movies.rating)
+    .reduce((a, b) => a + b, 0)
 }
 
 // 16. Return the average rating value for all of her movies
 function ratingAverage() {
-  const ratings = []
-  for (let i = 0; i < beyonceHash.movies.length; i++) {
-    ratings.push(beyonceHash.movies[i].rating);
-  }
-  let sum = 0
-  for (let rating of ratings) {
-    sum += rating
-  }
-  let avg = sum / ratings.length
-  return avg
+  console.log(ratingSum() /beyonceHash.movies.map(movies => movies.rating).length)
 
 }
 
@@ -237,6 +188,7 @@ function hairStyleFrequency() {
     tally[num] = tally[num] ? tally[num] + 1 : 1
   }
 
-return tally 
+  return tally
 
 }
+
