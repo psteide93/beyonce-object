@@ -112,21 +112,13 @@ function ratingSum() {
 
 // 16. Return the average rating value for all of her movies
 function ratingAverage() {
-  console.log(ratingSum() /beyonceHash.movies.map(movies => movies.rating).length)
+  return ratingSum() / beyonceHash.movies.map(movies => movies.rating).length
 
 }
 
 // 17. Return the sum of the total number of dancers in all of the hit song videos
 function hitDancerSum() {
-  const numberOfDancers = []
-  for (let i = 0; i < beyonceHash.hits.length; i++) {
-    numberOfDancers.push(beyonceHash.hits[i].dancers);
-  }
-  let sum = 0
-  for (let dancers of numberOfDancers) {
-    sum += dancers
-  }
-  return sum
+  console.log(beyonceHash.hits.map(hits => hits.dancers).reduce((a, b) => a + b, 0))
 }
 
 // 18. Return an array of Beyonce's hairstyles without repeats
@@ -192,3 +184,4 @@ function hairStyleFrequency() {
 
 }
 
+hitDancerSum()
