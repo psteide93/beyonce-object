@@ -160,9 +160,7 @@ function movieRatingsByName() {
 
 // 21. Return an object with Beyonce's hairstyles as the keys and a tally of each hairstyle, eg. `{ "blonde": 3, ... }`
 function hairStyleFrequency() {
-  return getTotalHairList()
-    .reduce((allHairdos, hairdo) =>
-      allHairdos[hairdo] ? allHairdos[hairdo]++ : allHairdos[hairdo] = 1,
-      allHairdos,
-      {})
+  return getTotalHairList().reduce((allHairdos, hairdo) => {
+    return allHairdos[hairdo] ? allHairdos[hairdo]++ : allHairdos[hairdo] = 1, allHairdos
+  }, {})
 }
