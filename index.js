@@ -124,12 +124,13 @@ function hitDancerSum() {
 }
 
 // 18. Return an array of Beyonce's hairstyles without repeats
+function getTotalHairList() {
+  return beyonceHash.hits
+    .map(hits => hits.hair)
+    .flat()
+}
+
 function uniqueHairstyles() {
-  function getTotalHairList() {
-    return beyonceHash.hits
-      .map(hits => hits.hair)
-      .flat()
-  }
   return getTotalHairList().filter((hair, position) => getTotalHairList()
     .indexOf(hair) === position)
 }
@@ -159,15 +160,10 @@ function movieRatingsByName() {
 
 // 21. Return an object with Beyonce's hairstyles as the keys and a tally of each hairstyle, eg. `{ "blonde": 3, ... }`
 function hairStyleFrequency() {
-  const hairdo = beyonceHash.hits.map(hits => hits.hair).flat()
-  const hairdoCombined = hairdo.flat()
-  const tally = {}
-  for (const num of hairdoCombined) {
-    tally[num] = tally[num] ? tally[num] + 1 : 1
-  }
-
-  return tally
-
+  uniqueHairstyles().map(hairstyle => {
+    const tally = getTotalHairList()
+    .filter(totalHairstyle =>
+      (totalHairstyle === hairstyle)).length
+    return{ hairstyle, tally }
+  })
 }
-
-movieRatingsByName()
